@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>产品数据看板</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>每日产品状态</h1>
+    <div id="data-container"></div>
+
+    <script>
+        // 使用 Supabase 的匿名公钥，前端可以直接读取数据
+        const supabase = supabaseCreateClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+
+        async function loadData() {
+            const { data, error } = await supabase.from('jira_data').select('*');
+            // 将 data 循环渲染为 HTML 表格或列表
+            console.log(data);
+        }
+        loadData();
+    </script>
+</body>
+</html>
